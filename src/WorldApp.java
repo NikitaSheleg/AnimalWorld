@@ -140,9 +140,10 @@ public class WorldApp extends Application {
         for (Animal animal : animals) {
 
             boolean isPredator = animal instanceof Predator;
-
+//TODO add nature instead animals and plants and increase performance
             for (Animal anotherAnimal : animals) {
                 boolean isHerbivore = anotherAnimal instanceof Herbivore;
+                //TODO move for to another place, now it works just with a couple herbivores
                 for (Plants plant : plants) {
                     if (isHerbivore && anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(plant.getView().localToScene(plant.getView().getLayoutBounds().getMinX(), plant.getView().getLayoutBounds().getMinY())) < 100) {
                         moving.moveToCoordinate(anotherAnimal, plant.getView().getTranslateX(), plant.getView().getTranslateY());
@@ -250,7 +251,7 @@ public class WorldApp extends Application {
         stage.show();
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(90), new EventHandler<ActionEvent>() {
-
+//TODO maybe more random
             @Override
             public void handle(ActionEvent event) {
                 if (random1 < 3) {

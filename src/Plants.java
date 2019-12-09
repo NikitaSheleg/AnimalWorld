@@ -2,14 +2,16 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class Plants {
+public class Plants implements Nature {
     private Node view;
     private boolean alive = true;
 
+    @Override
     public boolean isAlive() {
         return alive;
     }
 
+    @Override
     public boolean isDead() {
         return !alive;
     }

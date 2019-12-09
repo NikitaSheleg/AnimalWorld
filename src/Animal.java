@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Animal extends Moving {
+public class Animal extends Moving implements Nature {
 
     private boolean alive = true;
     private char sex;
@@ -52,7 +52,7 @@ public class Animal extends Moving {
         this.age = age;
     }
 
-
+    @Override
     public boolean isAlive() {
         return alive;
     }
@@ -61,6 +61,7 @@ public class Animal extends Moving {
         this.alive = alive;
     }
 
+    @Override
     public boolean isDead() {
         return !alive;
     }
