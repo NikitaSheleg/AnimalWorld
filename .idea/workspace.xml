@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="118c0ff6-ae88-4100-82cc-8bb9455c58bf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Nature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Plants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plants.java" afterDir="false" />
-    </list>
+    <list default="true" id="118c0ff6-ae88-4100-82cc-8bb9455c58bf" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +175,7 @@
       <workItem from="1575564850863" duration="1270000" />
       <workItem from="1575629150997" duration="4258000" />
       <workItem from="1575695617724" duration="10398000" />
-      <workItem from="1575901045890" duration="13637000" />
+      <workItem from="1575901045890" duration="14060000" />
     </task>
     <task id="LOCAL-00001" summary="plants added, but performance decreased">
       <created>1575913637659</created>
@@ -188,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575913637660</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Nature interface added">
+      <created>1575914954929</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575914954929</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,34 +210,35 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="plants added, but performance decreased" />
-    <option name="LAST_COMMIT_MESSAGE" value="plants added, but performance decreased" />
+    <MESSAGE value="Nature interface added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nature interface added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>238</line>
+          <line>239</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>239</line>
+          <line>240</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>240</line>
+          <line>241</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>166</line>
+          <line>167</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>149</line>
+          <line>150</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
