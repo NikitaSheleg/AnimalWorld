@@ -21,11 +21,20 @@ public class WorldApp extends Application {
     private Moving moving = new Moving();
     private char[] dict = new char[2];
     private List<Animal> animals = new ArrayList<>();
+    private List<Plants> plants = new ArrayList<>();
     private Line upLine = new Line();
     private Line leftLine = new Line();
     private Line downLine = new Line();
     private Line rightLine = new Line();
     private int random1;
+
+    private void addNew(Animal animal, double x, double y) {
+        animal.getView().setTranslateX(x);
+        animal.getView().setTranslateY(y);
+        root.getChildren().add(animal.getView());
+        animals.add(animal);
+    }
+
 
     private Parent createContent() {
         root = new Pane();
@@ -82,11 +91,17 @@ public class WorldApp extends Application {
         addObjects(herbivore, x, y);
     }
 
-    private void addPred(Predator predator, double x, double y) {
+    public void addPred(Predator predator, double x, double y) {
         animals.add(predator);
         addObjects(predator, x, y);
     }
 
+    private void addPlants(Plants plant, double x, double y) {
+        plants.add(plant);
+        plant.getView().setTranslateX(x);
+        plant.getView().setTranslateY(y);
+        root.getChildren().add(plant.getView());
+    }
 
     private void setFirstGeneration() {
         for (int i = 0; i < 5; i++) {
@@ -97,7 +112,9 @@ public class WorldApp extends Application {
             addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
             addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
-
+        for (int i = 0; i < 30; i++) {
+            addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+        }
     }
 
   /*  private void check() {
@@ -125,7 +142,16 @@ public class WorldApp extends Application {
             boolean isPredator = animal instanceof Predator;
 
             for (Animal anotherAnimal : animals) {
-
+                boolean isHerbivore = anotherAnimal instanceof Herbivore;
+                for (Plants plant : plants) {
+                    if (isHerbivore && anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(plant.getView().localToScene(plant.getView().getLayoutBounds().getMinX(), plant.getView().getLayoutBounds().getMinY())) < 100) {
+                        moving.moveToCoordinate(anotherAnimal, plant.getView().getTranslateX(), plant.getView().getTranslateY());
+                        if (anotherAnimal.getView().getBoundsInParent().intersects(plant.getView().getBoundsInParent())) {
+                            root.getChildren().remove(plant.getView());
+                            plant.setAlive(false);
+                        }
+                    }
+                }
                 if (upLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
                     moving.moveDown(anotherAnimal);
                 }
@@ -138,12 +164,9 @@ public class WorldApp extends Application {
                 if (rightLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
                     moving.moveLeft(anotherAnimal);
                 }
-
-
                 if (!Objects.equals(animal, anotherAnimal)) {
                     boolean isColliding = animal.isColliding(anotherAnimal);
 
-                    boolean isHerbivore = anotherAnimal instanceof Herbivore;
                     if ((isPredator && isHerbivore)) {
                         if (anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(animal.getView().localToScene(animal.getView().getLayoutBounds().getMinX(), animal.getView().getLayoutBounds().getMinY())) < 100) {
                             moving.moveTo(animal, anotherAnimal);
@@ -159,16 +182,7 @@ public class WorldApp extends Application {
 
                     }
 
-                    if (isHerbivore && animal instanceof Herbivore) {
-                        if (isColliding) {
-                            addHerbivore(new Herbivore('F', 1, 50, 1), 0, 0);
-                        }
-                    }
-                    if (isPredator && anotherAnimal instanceof Predator) {
-                        if (isColliding) {
-                            addPred(new Predator('M', 1, 50, 1), 0, 0);
-                        }
-                    }
+
                     /*else if (isColliding && (isPredator && anotherAnimal instanceof Predator)) {
                         addPred(new Predator('M', 1, 50, 1), animal.getView().getTranslateX(), animal.getView().getTranslateY());
                         root.getChildren().remove(animal.getView());
@@ -211,11 +225,18 @@ public class WorldApp extends Application {
                     }*/
 
 
-                }
+                }/* else if (animal.getId() != anotherAnimal.getId() && (animal instanceof Predator && anotherAnimal instanceof Predator)) {
+                    if (animal.isColliding(anotherAnimal)) {
+                        Predator predator = new Predator('M', 1, 40, 1);
+                        predator.getView().setTranslateX(Math.random() * root.getPrefHeight());
+                        predator.getView().setTranslateY(Math.random() * root.getPrefWidth());
+                        root.getChildren().add(predator.getView());
+                        animals.add(predator);
+                    }
+                }*/
             }
-
-
         }
+        plants.removeIf(Plants::isDead);
         animals.removeIf(Animal::isDead);
         animals.forEach(Animal::update);
     }
@@ -239,7 +260,6 @@ public class WorldApp extends Application {
                         } else {
                             animal.rotateRight();
                         }
-
                     }
 
                 } else if (random1 > 3) {

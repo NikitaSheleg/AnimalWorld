@@ -1,4 +1,4 @@
-public class PopulationControl extends Thread {
+public class PopulationControl extends WorldApp implements Runnable {
 
 
     private Animal firstAnimal, secondAnimal;
@@ -8,10 +8,7 @@ public class PopulationControl extends Thread {
         this.secondAnimal = secondAnimal;
     }
 
-    @Override
-    public synchronized void start() {
-        populationControl(getFirstAnimal(), getSecondAnimal());
-    }
+
 
     private void populationControl(Animal firstAnimal, Animal secondAnimal) {
         if (firstAnimal instanceof Herbivore && secondAnimal instanceof Herbivore) {
@@ -27,5 +24,10 @@ public class PopulationControl extends Thread {
 
     public Animal getSecondAnimal() {
         return secondAnimal;
+    }
+
+    @Override
+    public void run() {
+        addPred(new Predator('M',1,50,1),0,0);
     }
 }

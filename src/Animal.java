@@ -2,6 +2,8 @@ import javafx.scene.Node;
 import javafx.scene.shape.Circle;
 
 import java.util.Objects;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Animal extends Moving {
 
@@ -11,7 +13,7 @@ public class Animal extends Moving {
     protected String uuid;
     private int fertilnost;
     private double size;
-
+    private int id;
 
     public int getFertilnost() {
         return fertilnost;
@@ -24,7 +26,6 @@ public class Animal extends Moving {
     public void incrementFertilnost() {
         this.fertilnost++;
     }
-
 
 
     public char getSex() {
@@ -72,14 +73,16 @@ public class Animal extends Moving {
         return Objects.equals(uuid, animal.uuid);
     }
 
+    public int getId() {
+        return id;
+    }
 
     public Animal(Node view, char sex, int age, int fertilnost) {
         this.setSex(sex);
         this.setAge(age);
         this.setView(view);
         this.setFertilnost(fertilnost);
-
-
+        this.id = new Random().nextInt();
     }
 
     public void growUp() {
