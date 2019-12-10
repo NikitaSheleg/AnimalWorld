@@ -1,7 +1,9 @@
 import javafx.scene.Node;
+import javafx.scene.shape.Circle;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Animal extends Moving implements Nature {
 
@@ -12,22 +14,7 @@ public class Animal extends Moving implements Nature {
     private int fertilnost;
     private double size;
     private int id;
-private int satiety;
 
-    public int getSatiety() {
-        return satiety;
-    }
-
-    private void setSatiety() {
-        this.satiety = 150;
-    }
-
-    public void decreaseSatiety(){
-        this.satiety-=0.0000000000001;
-    }
-    public void increaseSatiety(int value){
-        this.satiety+=value;
-    }
     public int getFertilnost() {
         return fertilnost;
     }
@@ -96,7 +83,6 @@ private int satiety;
         this.setAge(age);
         this.setView(view);
         this.setFertilnost(fertilnost);
-        this.setSatiety();
         this.id = new Random().nextInt();
     }
 

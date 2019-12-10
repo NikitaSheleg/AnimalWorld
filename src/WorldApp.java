@@ -108,11 +108,11 @@ public class WorldApp extends Application {
             addPred(new Predator('M', 1, 15, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
             addPred(new Predator('F', 1, 9, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 50; i++) {
             addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
             addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 30; i++) {
             addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
     }
@@ -136,59 +136,48 @@ public class WorldApp extends Application {
 
 
     private void onUpdate() {
-//TODO vot tut
-        for (Animal animal : animals) {
-            if (animal.getSatiety() == 0){
-                animal.setAlive(false);
-            }
 
-                boolean isPredator = animal instanceof Predator;
+        for (Animal animal : animals) {
+
+            boolean isPredator = animal instanceof Predator;
             //TODO add nature instead animals and plants and increase performance
             for (Animal anotherAnimal : animals) {
                 boolean isHerbivore = anotherAnimal instanceof Herbivore;
                 //TODO move for to another place, now it works just with a couple herbivores
                 for (Plants plant : plants) {
-                    if (isHerbivore && anotherAnimal.getSatiety() < 70 && anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(plant.getView().localToScene(plant.getView().getLayoutBounds().getMinX(), plant.getView().getLayoutBounds().getMinY())) < 100) {
+                    if (isHerbivore && anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(plant.getView().localToScene(plant.getView().getLayoutBounds().getMinX(), plant.getView().getLayoutBounds().getMinY())) < 40) {
                         moving.moveToCoordinate(anotherAnimal, plant.getView().getTranslateX(), plant.getView().getTranslateY());
                         if (anotherAnimal.getView().getBoundsInParent().intersects(plant.getView().getBoundsInParent())) {
+                            plants.remove(plant);
                             root.getChildren().remove(plant.getView());
-                            anotherAnimal.increaseSatiety(3);
                             plant.setAlive(false);
+                            break;
                         }
                     }
                 }
                 if (upLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
                     moving.moveDown(anotherAnimal);
-                }
-                if (leftLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
+                } else if (leftLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
                     moving.moveRight(anotherAnimal);
-                }
-                if (downLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
+                } else if (downLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
                     moving.moveUp(anotherAnimal);
-                }
-                if (rightLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
+                } else if (rightLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
                     moving.moveLeft(anotherAnimal);
                 }
                 if (!Objects.equals(animal, anotherAnimal)) {
                     boolean isColliding = animal.isColliding(anotherAnimal);
-
-                    if ((isPredator && isHerbivore) && animal.getSatiety() < 90) {
+                    if ((isPredator && isHerbivore)) {
                         if (anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(animal.getView().localToScene(animal.getView().getLayoutBounds().getMinX(), animal.getView().getLayoutBounds().getMinY())) < 100) {
                             moving.moveTo(animal, anotherAnimal);
                             anotherAnimal.update();
                             animal.update();
                         }
-
                         if (isColliding) {
                             root.getChildren().remove(anotherAnimal.getView());
-                            animal.increaseSatiety(10);
                             anotherAnimal.setAlive(false);
                             anotherAnimal.update();
                         }
-
                     }
-
-
                     /*else if (isColliding && (isPredator && anotherAnimal instanceof Predator)) {
                         addPred(new Predator('M', 1, 50, 1), animal.getView().getTranslateX(), animal.getView().getTranslateY());
                         root.getChildren().remove(animal.getView());
@@ -229,25 +218,16 @@ public class WorldApp extends Application {
                             }
                         }
                     }*/
-
-
-                }/* else if (animal.getId() != anotherAnimal.getId() && (animal instanceof Predator && anotherAnimal instanceof Predator)) {
+                } /*else if (animal.getId() != anotherAnimal.getId() && (animal instanceof Predator && anotherAnimal instanceof Predator)) {
                     if (animal.isColliding(anotherAnimal)) {
-                        Predator predator = new Predator('M', 1, 40, 1);
-                        predator.getView().setTranslateX(Math.random() * root.getPrefHeight());
-                        predator.getView().setTranslateY(Math.random() * root.getPrefWidth());
-                        root.getChildren().add(predator.getView());
-                        animals.add(predator);
+                        addPred(new Predator('M', 1, 40, 1),Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+
                     }
                 }*/
             }
         }
-      //  addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
-
-        plants.removeIf(Plants::isDead);
         animals.removeIf(Animal::isDead);
         animals.forEach(Animal::update);
-        animals.forEach(Animal::decreaseSatiety);
     }
 
 
@@ -262,6 +242,7 @@ public class WorldApp extends Application {
             //TODO maybe more random
             @Override
             public void handle(ActionEvent event) {
+                //  addPlants(new Plants(),Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
                 if (random1 < 3) {
                     for (Animal animal : animals) {
                         if (animal instanceof Predator) {
