@@ -108,11 +108,11 @@ public class WorldApp extends Application {
             addPred(new Predator('M', 1, 15, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
             addPred(new Predator('F', 1, 9, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 40; i++) {
             addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
             addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 60; i++) {
             addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
     }
@@ -136,19 +136,23 @@ public class WorldApp extends Application {
 
 
     private void onUpdate() {
-
+//TODO vot tut
         for (Animal animal : animals) {
+            if (animal.getSatiety() == 0){
+                animal.setAlive(false);
+            }
 
-            boolean isPredator = animal instanceof Predator;
-//TODO add nature instead animals and plants and increase performance
+                boolean isPredator = animal instanceof Predator;
+            //TODO add nature instead animals and plants and increase performance
             for (Animal anotherAnimal : animals) {
                 boolean isHerbivore = anotherAnimal instanceof Herbivore;
                 //TODO move for to another place, now it works just with a couple herbivores
                 for (Plants plant : plants) {
-                    if (isHerbivore && anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(plant.getView().localToScene(plant.getView().getLayoutBounds().getMinX(), plant.getView().getLayoutBounds().getMinY())) < 100) {
+                    if (isHerbivore && anotherAnimal.getSatiety() < 70 && anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(plant.getView().localToScene(plant.getView().getLayoutBounds().getMinX(), plant.getView().getLayoutBounds().getMinY())) < 100) {
                         moving.moveToCoordinate(anotherAnimal, plant.getView().getTranslateX(), plant.getView().getTranslateY());
                         if (anotherAnimal.getView().getBoundsInParent().intersects(plant.getView().getBoundsInParent())) {
                             root.getChildren().remove(plant.getView());
+                            anotherAnimal.increaseSatiety(3);
                             plant.setAlive(false);
                         }
                     }
@@ -168,7 +172,7 @@ public class WorldApp extends Application {
                 if (!Objects.equals(animal, anotherAnimal)) {
                     boolean isColliding = animal.isColliding(anotherAnimal);
 
-                    if ((isPredator && isHerbivore)) {
+                    if ((isPredator && isHerbivore) && animal.getSatiety() < 90) {
                         if (anotherAnimal.getView().localToScene(anotherAnimal.getView().getLayoutBounds().getMinX(), anotherAnimal.getView().getLayoutBounds().getMinY()).distance(animal.getView().localToScene(animal.getView().getLayoutBounds().getMinX(), animal.getView().getLayoutBounds().getMinY())) < 100) {
                             moving.moveTo(animal, anotherAnimal);
                             anotherAnimal.update();
@@ -177,6 +181,7 @@ public class WorldApp extends Application {
 
                         if (isColliding) {
                             root.getChildren().remove(anotherAnimal.getView());
+                            animal.increaseSatiety(10);
                             anotherAnimal.setAlive(false);
                             anotherAnimal.update();
                         }
@@ -237,9 +242,12 @@ public class WorldApp extends Application {
                 }*/
             }
         }
+      //  addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+
         plants.removeIf(Plants::isDead);
         animals.removeIf(Animal::isDead);
         animals.forEach(Animal::update);
+        animals.forEach(Animal::decreaseSatiety);
     }
 
 
@@ -251,7 +259,7 @@ public class WorldApp extends Application {
         stage.show();
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(90), new EventHandler<ActionEvent>() {
-//TODO maybe more random
+            //TODO maybe more random
             @Override
             public void handle(ActionEvent event) {
                 if (random1 < 3) {

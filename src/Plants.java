@@ -29,7 +29,7 @@ public class Plants implements Nature {
     }
 
     public Plants() {
-        this.setView(new Circle(40, 40, 3, Color.LIMEGREEN));
+        this.setView(new Circle(40, 40, 3, Color.SPRINGGREEN));
     }
 
 }

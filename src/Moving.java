@@ -112,6 +112,7 @@ public class Moving {
     public void update() {
         getView().setTranslateX(getVelocity().getX() + getView().getTranslateX());
         getView().setTranslateY(getVelocity().getY() + getView().getTranslateY());
+
     }
 
 }

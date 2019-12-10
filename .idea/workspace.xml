@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="118c0ff6-ae88-4100-82cc-8bb9455c58bf" name="Default Changelist" comment="" />
+    <list default="true" id="118c0ff6-ae88-4100-82cc-8bb9455c58bf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Moving.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/Moving.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Plants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/Plants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Moving.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Moving.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Plants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WorldApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WorldApp.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +186,8 @@
       <workItem from="1575564850863" duration="1270000" />
       <workItem from="1575629150997" duration="4258000" />
       <workItem from="1575695617724" duration="10398000" />
-      <workItem from="1575901045890" duration="14060000" />
+      <workItem from="1575901045890" duration="14341000" />
+      <workItem from="1575977760434" duration="4349000" />
     </task>
     <task id="LOCAL-00001" summary="plants added, but performance decreased">
       <created>1575913637659</created>
@@ -202,7 +214,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -218,28 +232,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>239</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>240</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>241</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>167</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="40" />
+          <line>175</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
