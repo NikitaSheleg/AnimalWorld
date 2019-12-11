@@ -181,7 +181,6 @@ public class WorldApp extends Application {
                             root.getChildren().remove(anotherAnimal.getView());
                             anotherAnimal.setAlive(false);
                             anotherAnimal.update();
-
                         }
                     }
                     /*else if (isColliding && (isPredator && anotherAnimal instanceof animals.Predator)) {
@@ -258,7 +257,7 @@ public class WorldApp extends Application {
                 superPredator.rotateLeft();
             } else if (e.getCode() == KeyCode.D) {
                 superPredator.rotateRight();
-            } else if (e.getCode() == KeyCode.W) moving.moveUp(superPredator);
+            } else if (e.getCode() == KeyCode.SHIFT) superPredator.getView();
         });
         stage.show();
 

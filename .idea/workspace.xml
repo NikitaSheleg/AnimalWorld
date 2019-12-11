@@ -3,19 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="118c0ff6-ae88-4100-82cc-8bb9455c58bf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Moving.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/Moving.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/liveOrganisms/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Herbivore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/liveOrganisms/Herbivore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Moving.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Moving.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Nature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/Nature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Plants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/liveOrganisms/Plants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PopulationControl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/liveOrganisms/Predator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SuperPredator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/liveOrganisms/SuperPredator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WorldApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/WorldApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Player1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/liveOrganisms/SuperPredator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/liveOrganisms/SuperPredator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/liveOrganisms/SuperPredator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/liveOrganisms/SuperPredator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/world/WorldApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/WorldApp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -192,7 +185,7 @@
       <workItem from="1575695617724" duration="10398000" />
       <workItem from="1575901045890" duration="14341000" />
       <workItem from="1575977760434" duration="12165000" />
-      <workItem from="1576065951485" duration="14648000" />
+      <workItem from="1576065951485" duration="15746000" />
     </task>
     <task id="LOCAL-00001" summary="plants added, but performance decreased">
       <created>1575913637659</created>
