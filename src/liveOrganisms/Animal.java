@@ -1,12 +1,11 @@
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
+package liveOrganisms;
 
-import java.awt.*;
+import controller.Moving;
+import javafx.scene.Node;
+import world.Nature;
+
 import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Animal extends Moving implements Nature {
 

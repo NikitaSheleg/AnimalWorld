@@ -1,6 +1,9 @@
+package liveOrganisms;
+
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import world.Nature;
 
 public class Plants implements Nature {
     private Node view;

@@ -1,8 +1,7 @@
-import javafx.scene.Node;
+package liveOrganisms;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-import java.util.UUID;
 
 public class Herbivore extends Animal {
     public Herbivore(char sex, int age, double size, int fertilnost) {

@@ -1,10 +1,10 @@
+package controller;
 
+import liveOrganisms.Animal;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.util.Duration;
-
-import java.util.Random;
 
 
 public class Moving {
@@ -32,14 +32,11 @@ public class Moving {
         this.velocity = velocity;
     }
 
-
     public void rotateRight() {
         getView().setRotate(getRotate() + 5);
         setVelocity(new Point2D(Math.cos(Math.toRadians(getRotate())), Math.sin(Math.toRadians(getRotate()))));
         setVelocity(new Point2D(Math.cos(Math.toRadians(getRotate())), Math.sin(Math.toRadians(getRotate()))));
     }
-
-
 
     public void moveToCoordinate(Animal animal, double xCoordinate, double yCoordinate) {
         transition.setNode(animal.getView());

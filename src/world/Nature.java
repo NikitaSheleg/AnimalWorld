@@ -1,3 +1,5 @@
+package world;
+
 public interface Nature {
     boolean alive = true;
      boolean isAlive();

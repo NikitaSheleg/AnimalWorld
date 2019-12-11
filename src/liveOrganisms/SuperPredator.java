@@ -1,4 +1,5 @@
-import javafx.scene.Node;
+package liveOrganisms;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 

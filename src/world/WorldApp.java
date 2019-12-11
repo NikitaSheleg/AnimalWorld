@@ -1,4 +1,7 @@
+package world;
 
+import controller.Moving;
+import liveOrganisms.*;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -34,7 +37,6 @@ public class WorldApp extends Application {
     private SuperPredator superPredator = new SuperPredator('M', 18, 0);
     private boolean isPregnantPredator = false;
     private boolean isPregnantHerbivore = false;
-
 
 
     private Parent createContent() {
@@ -119,7 +121,7 @@ public class WorldApp extends Application {
     }
 
   /*  private void check() {
-        for (Animal animal : animals) {
+        for (animals.Animal animal : animals) {
             if (upLine.getBoundsInParent().intersects(animal.getView().getBoundsInLocal())) {
                 moving.moveDown(animal);
             }
@@ -136,11 +138,9 @@ public class WorldApp extends Application {
     }*/
 
 
-
     private void onUpdate() {
 
         for (Animal animal : animals) {
-
             boolean isPredator = animal instanceof Predator;
             //TODO add nature instead animals and plants and increase performance
             for (Animal anotherAnimal : animals) {
@@ -181,18 +181,19 @@ public class WorldApp extends Application {
                             root.getChildren().remove(anotherAnimal.getView());
                             anotherAnimal.setAlive(false);
                             anotherAnimal.update();
+
                         }
                     }
-                    /*else if (isColliding && (isPredator && anotherAnimal instanceof Predator)) {
-                        addPred(new Predator('M', 1, 50, 1), animal.getView().getTranslateX(), animal.getView().getTranslateY());
+                    /*else if (isColliding && (isPredator && anotherAnimal instanceof animals.Predator)) {
+                        addPred(new animals.Predator('M', 1, 50, 1), animal.getView().getTranslateX(), animal.getView().getTranslateY());
                         root.getChildren().remove(animal.getView());
                         animal.setAlive(false);
                         animal.update();
                         root.getChildren().remove(anotherAnimal.getView());
                         anotherAnimal.setAlive(false);
                         anotherAnimal.update();
-                    } else if (isColliding && isHerbivore && animal instanceof Herbivore) {
-                        addHerbivore(new Herbivore('F', 1, 50, 1), animal.getView().getTranslateX(), animal.getView().getTranslateY());
+                    } else if (isColliding && isHerbivore && animal instanceof animals.Herbivore) {
+                        addHerbivore(new animals.Herbivore('F', 1, 50, 1), animal.getView().getTranslateX(), animal.getView().getTranslateY());
                         root.getChildren().remove(animal.getView());
                         animal.setAlive(false);
                         animal.update();
@@ -200,10 +201,10 @@ public class WorldApp extends Application {
                         anotherAnimal.setAlive(false);
                         anotherAnimal.update();
                     }*/
-                   /* else if (isColliding && !(animal instanceof Herbivore && anotherAnimal instanceof Predator)) {
+                   /* else if (isColliding && !(animal instanceof animals.Herbivore && anotherAnimal instanceof animals.Predator)) {
                         if ((animal.getSex() == 'M' && anotherAnimal.getSex() == 'F') || (animal.getSex() == 'F' && anotherAnimal.getSex() == 'M')) {
                             if (isPredator) {
-                                addPred(new Predator('M', 1, 50, 0), animal.getView().getTranslateX(), animal.getView().getTranslateY());
+                                addPred(new animals.Predator('M', 1, 50, 0), animal.getView().getTranslateX(), animal.getView().getTranslateY());
                                 root.getChildren().remove(animal.getView());
                                 animal.setAlive(false);
                                 animal.update();
@@ -213,7 +214,7 @@ public class WorldApp extends Application {
 
                             }
                             if (isHerbivore) {
-                                addHerbivore(new Herbivore('F', 1, 50, 0), animal.getView().getTranslateX(), animal.getView().getTranslateY());
+                                addHerbivore(new animals.Herbivore('F', 1, 50, 0), animal.getView().getTranslateX(), animal.getView().getTranslateY());
                                 root.getChildren().remove(animal.getView());
                                 animal.setAlive(false);
                                 animal.update();
@@ -257,7 +258,7 @@ public class WorldApp extends Application {
                 superPredator.rotateLeft();
             } else if (e.getCode() == KeyCode.D) {
                 superPredator.rotateRight();
-            }
+            } else if (e.getCode() == KeyCode.W) moving.moveUp(superPredator);
         });
         stage.show();
 
