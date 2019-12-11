@@ -3,11 +3,15 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -19,7 +23,6 @@ import java.util.*;
 public class WorldApp extends Application {
     private Pane root;
     private Moving moving = new Moving();
-    private char[] dict = new char[2];
     private List<Animal> animals = new ArrayList<>();
     private List<Plants> plants = new ArrayList<>();
     private Line upLine = new Line();
@@ -27,21 +30,17 @@ public class WorldApp extends Application {
     private Line downLine = new Line();
     private Line rightLine = new Line();
     private int random1;
+    private List<Animal> animalsCopy = new ArrayList<>();
+    private SuperPredator superPredator = new SuperPredator('M', 18, 0);
+    private boolean isPregnantPredator = false;
+    private boolean isPregnantHerbivore = false;
 
-    private void addNew(Animal animal, double x, double y) {
-        animal.getView().setTranslateX(x);
-        animal.getView().setTranslateY(y);
-        root.getChildren().add(animal.getView());
-        animals.add(animal);
-    }
 
 
     private Parent createContent() {
         root = new Pane();
         root.setPrefSize(1500, 800);
-        dict[0] = 'M';
-        dict[1] = 'F';
-
+        root.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));
         upLine.setFill(Color.rgb(0, 0, 0));
         upLine.setStartX(1500);
         upLine.setStartY(0);
@@ -67,6 +66,8 @@ public class WorldApp extends Application {
         root.getChildren().add(leftLine);
         root.getChildren().add(downLine);
         root.getChildren().add(rightLine);
+
+        root.getChildren().add(superPredator.getView());
         setFirstGeneration();
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -108,11 +109,11 @@ public class WorldApp extends Application {
             addPred(new Predator('M', 1, 15, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
             addPred(new Predator('F', 1, 9, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
-        for (int i = 0; i < 50; i++) {
-            addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
-            addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+        for (int i = 0; i < 25; i++) {
+            addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight() - 100, Math.random() * root.getPrefWidth() - 100);
+            addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight() - 100, Math.random() * root.getPrefWidth() - 100);
         }
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 20; i++) {
             addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
     }
@@ -135,6 +136,7 @@ public class WorldApp extends Application {
     }*/
 
 
+
     private void onUpdate() {
 
         for (Animal animal : animals) {
@@ -142,6 +144,7 @@ public class WorldApp extends Application {
             boolean isPredator = animal instanceof Predator;
             //TODO add nature instead animals and plants and increase performance
             for (Animal anotherAnimal : animals) {
+
                 boolean isHerbivore = anotherAnimal instanceof Herbivore;
                 //TODO move for to another place, now it works just with a couple herbivores
                 for (Plants plant : plants) {
@@ -153,7 +156,9 @@ public class WorldApp extends Application {
                             plant.setAlive(false);
                             break;
                         }
+
                     }
+
                 }
                 if (upLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
                     moving.moveDown(anotherAnimal);
@@ -218,14 +223,24 @@ public class WorldApp extends Application {
                             }
                         }
                     }*/
-                } /*else if (animal.getId() != anotherAnimal.getId() && (animal instanceof Predator && anotherAnimal instanceof Predator)) {
+                } else if (animal.getId() != anotherAnimal.getId() && (isPredator && anotherAnimal instanceof Predator) && (animal.getSex() == 'M' && anotherAnimal.getSex() == 'F') || (animal.getSex() == 'F' && anotherAnimal.getSex() == 'M')) {
                     if (animal.isColliding(anotherAnimal)) {
-                        addPred(new Predator('M', 1, 40, 1),Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
-
+                        isPregnantPredator = true;
                     }
-                }*/
+                } else if (animal.getId() != anotherAnimal.getId() && (animal instanceof Herbivore && isHerbivore) && (animal.getSex() == 'M' && anotherAnimal.getSex() == 'F') || (animal.getSex() == 'F' && anotherAnimal.getSex() == 'M')) {
+                    if (animal.isColliding(anotherAnimal)) {
+                        isPregnantHerbivore = true;
+                    }
+                }
+                if (anotherAnimal.isColliding(superPredator)) {
+                    root.getChildren().remove(anotherAnimal.getView());
+                    anotherAnimal.setAlive(false);
+                    anotherAnimal.update();
+                }
             }
+
         }
+        superPredator.update();
         animals.removeIf(Animal::isDead);
         animals.forEach(Animal::update);
     }
@@ -236,13 +251,21 @@ public class WorldApp extends Application {
 
         stage.setScene(new Scene(createContent()));
         stage.setResizable(true);
+
+        stage.getScene().setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.A) {
+                superPredator.rotateLeft();
+            } else if (e.getCode() == KeyCode.D) {
+                superPredator.rotateRight();
+            }
+        });
         stage.show();
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(90), new EventHandler<ActionEvent>() {
             //TODO maybe more random
             @Override
             public void handle(ActionEvent event) {
-                //  addPlants(new Plants(),Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+
                 if (random1 < 3) {
                     for (Animal animal : animals) {
                         if (animal instanceof Predator) {
@@ -250,28 +273,43 @@ public class WorldApp extends Application {
                         } else {
                             animal.rotateRight();
                         }
-                    }
 
+                    }
                 } else if (random1 > 3) {
                     for (Animal animal : animals) {
                         random1 = new Random().nextInt(4);
                         if (animal instanceof Predator) {
-                            if (random1 < 2)
+                            if (random1 < 2) {
                                 animal.rotateRight();
-                            else animal.rotateLeft();
+                            } else animal.rotateLeft();
                         } else {
-                            if (random1 > 2)
+                            if (random1 > 2) {
                                 animal.rotateLeft();
-                            else animal.rotateRight();
+                            } else animal.rotateRight();
                         }
+                    }
+                } else {
+                    addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+                    if (isPregnantPredator) {
+                        if (new Random().nextInt(5) > 2)
+                            addPred(new Predator('F', 1, 15, 0), 100, 100);
+                        else
+                            addPred(new Predator('M', 1, 9, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
 
+                    }
+                    if (isPregnantHerbivore) {
+                        if (new Random().nextInt(5) > 2)
+                            addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+                        else
+                            addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
                     }
                 }
             }
         }));
-
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+
+
     }
 
 

@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="118c0ff6-ae88-4100-82cc-8bb9455c58bf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/SuperPredator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/CoordinateHandle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Plants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/Plants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Predator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/Predator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/WorldApp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CoordinateHandle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Plants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Predator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WorldApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WorldApp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +39,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -50,7 +57,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Sp" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -183,7 +190,8 @@
       <workItem from="1575629150997" duration="4258000" />
       <workItem from="1575695617724" duration="10398000" />
       <workItem from="1575901045890" duration="14341000" />
-      <workItem from="1575977760434" duration="10774000" />
+      <workItem from="1575977760434" duration="12165000" />
+      <workItem from="1576065951485" duration="13378000" />
     </task>
     <task id="LOCAL-00001" summary="plants added, but performance decreased">
       <created>1575913637659</created>
@@ -230,16 +238,5 @@
     <MESSAGE value="Nature interface added" />
     <MESSAGE value="satiety added" />
     <option name="LAST_COMMIT_MESSAGE" value="satiety added" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/WorldApp.java</url>
-          <line>167</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

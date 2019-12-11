@@ -1,6 +1,9 @@
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import java.awt.*;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -14,6 +17,15 @@ public class Animal extends Moving implements Nature {
     private int fertilnost;
     private double size;
     private int id;
+private boolean isPregnant=false;
+
+    public boolean isPregnant() {
+        return isPregnant;
+    }
+
+    public void setPregnant(boolean pregnant) {
+        isPregnant = pregnant;
+    }
 
     public int getFertilnost() {
         return fertilnost;
@@ -52,6 +64,8 @@ public class Animal extends Moving implements Nature {
         this.age = age;
     }
 
+
+
     @Override
     public boolean isAlive() {
         return alive;
@@ -84,6 +98,7 @@ public class Animal extends Moving implements Nature {
         this.setView(view);
         this.setFertilnost(fertilnost);
         this.id = new Random().nextInt();
+
     }
 
     public void growUp() {
