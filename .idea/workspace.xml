@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="118c0ff6-ae88-4100-82cc-8bb9455c58bf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/Player1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/liveOrganisms/SuperPredator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/liveOrganisms/SuperPredator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ppvIsanotherone/world/WorldApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/liveOrganisms/SuperPredator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/liveOrganisms/SuperPredator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/world/WorldApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/WorldApp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -185,7 +183,8 @@
       <workItem from="1575695617724" duration="10398000" />
       <workItem from="1575901045890" duration="14341000" />
       <workItem from="1575977760434" duration="12165000" />
-      <workItem from="1576065951485" duration="15746000" />
+      <workItem from="1576065951485" duration="16002000" />
+      <workItem from="1576153540006" duration="2142000" />
     </task>
     <task id="LOCAL-00001" summary="plants added, but performance decreased">
       <created>1575913637659</created>

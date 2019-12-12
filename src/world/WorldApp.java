@@ -1,6 +1,7 @@
 package world;
 
 import controller.Moving;
+import javafx.geometry.Point2D;
 import liveOrganisms.*;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -94,7 +95,7 @@ public class WorldApp extends Application {
         addObjects(herbivore, x, y);
     }
 
-    public void addPred(Predator predator, double x, double y) {
+    private void addPred(Predator predator, double x, double y) {
         animals.add(predator);
         addObjects(predator, x, y);
     }
@@ -144,7 +145,6 @@ public class WorldApp extends Application {
             boolean isPredator = animal instanceof Predator;
             //TODO add nature instead animals and plants and increase performance
             for (Animal anotherAnimal : animals) {
-
                 boolean isHerbivore = anotherAnimal instanceof Herbivore;
                 //TODO move for to another place, now it works just with a couple herbivores
                 for (Plants plant : plants) {
@@ -225,14 +225,14 @@ public class WorldApp extends Application {
                     }*/
                 } else if (animal.getId() != anotherAnimal.getId() && (isPredator && anotherAnimal instanceof Predator) && (animal.getSex() == 'M' && anotherAnimal.getSex() == 'F') || (animal.getSex() == 'F' && anotherAnimal.getSex() == 'M')) {
                     if (animal.isColliding(anotherAnimal)) {
-                        isPregnantPredator = true;
+                        animal.setPregnant(true);
                     }
                 } else if (animal.getId() != anotherAnimal.getId() && (animal instanceof Herbivore && isHerbivore) && (animal.getSex() == 'M' && anotherAnimal.getSex() == 'F') || (animal.getSex() == 'F' && anotherAnimal.getSex() == 'M')) {
                     if (animal.isColliding(anotherAnimal)) {
-                        isPregnantHerbivore = true;
+                        animal.setPregnant(true);
                     }
                 }
-                if (anotherAnimal.isColliding(superPredator)) {
+                if (superPredator.isColliding(anotherAnimal)) {
                     root.getChildren().remove(anotherAnimal.getView());
                     anotherAnimal.setAlive(false);
                     anotherAnimal.update();
@@ -257,12 +257,12 @@ public class WorldApp extends Application {
                 superPredator.rotateLeft();
             } else if (e.getCode() == KeyCode.D) {
                 superPredator.rotateRight();
-            } else if (e.getCode() == KeyCode.SHIFT) superPredator.getView();
+            } else if (e.getCode() == KeyCode.SHIFT)
+                superPredator.getView().setRotate(superPredator.getRotate() + 10000);
         });
         stage.show();
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(90), new EventHandler<ActionEvent>() {
-            //TODO maybe more random
             @Override
             public void handle(ActionEvent event) {
 
@@ -290,19 +290,23 @@ public class WorldApp extends Application {
                     }
                 } else {
                     addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
-                    if (isPregnantPredator) {
+
+                }
+                for (Animal animal : animals) {
+                    if (animal instanceof Predator && animal.isPregnant()) {
                         if (new Random().nextInt(5) > 2)
                             addPred(new Predator('F', 1, 15, 0), 100, 100);
                         else
                             addPred(new Predator('M', 1, 9, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
 
                     }
-                    if (isPregnantHerbivore) {
+                    if (animal instanceof Herbivore && animal.isPregnant()) {
                         if (new Random().nextInt(5) > 2)
-                            addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+                            addHerbivore(new Herbivore('M', 1, 50, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
                         else
-                            addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+                            addHerbivore(new Herbivore('F', 1, 100, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
                     }
+                    break;
                 }
             }
         }));
