@@ -8,12 +8,14 @@ public class SuperPredator extends Animal {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void incrementScore() {
+        this.score++;
     }
 
     private int score;
+
     public SuperPredator(char sex, int age, int fertilnost) {
         super(new Circle(40, 40, 20, Color.DARKVIOLET), sex, age, fertilnost);
+        this.score = 0;
     }
 }

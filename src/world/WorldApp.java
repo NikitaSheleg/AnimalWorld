@@ -54,10 +54,10 @@ public class WorldApp extends Application {
         leftLine.setStartY(900);
 
         rightLine.setFill(Color.rgb(0, 0, 0));
-        rightLine.setStartX(1450);
+        rightLine.setStartX(1550);
         rightLine.setStartY(0);
-        rightLine.setEndX(1450);
-        rightLine.setEndY(800);
+        rightLine.setEndX(1550);
+        rightLine.setEndY(900);
 
         downLine.setFill(Color.rgb(0, 0, 0));
         downLine.setStartX(0);
@@ -115,8 +115,8 @@ public class WorldApp extends Application {
             addPred(new Predator('F', 1, 9, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
         for (int i = 0; i < 25; i++) {
-            addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight() , Math.random() * root.getPrefWidth() );
-            addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight() , Math.random() * root.getPrefWidth() );
+            addHerbivore(new Herbivore('M', 1, 11, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
+            addHerbivore(new Herbivore('F', 1, 7, 0), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
         }
         for (int i = 0; i < 20; i++) {
             addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
@@ -158,9 +158,7 @@ public class WorldApp extends Application {
                             plant.setAlive(false);
                             break;
                         }
-
                     }
-
                 }
                 if (upLine.getBoundsInLocal().intersects(anotherAnimal.getView().getBoundsInParent())) {
                     moving.moveDown(anotherAnimal);
@@ -240,11 +238,13 @@ public class WorldApp extends Application {
                     root.getChildren().remove(anotherAnimal.getView());
                     anotherAnimal.setAlive(false);
                     anotherAnimal.update();
+                    superPredator1.incrementScore();
                 }
                 if (superPredator2.isColliding(anotherAnimal)) {
                     root.getChildren().remove(anotherAnimal.getView());
                     anotherAnimal.setAlive(false);
                     anotherAnimal.update();
+                    superPredator2.incrementScore();
                 }
             }
 
@@ -253,6 +253,8 @@ public class WorldApp extends Application {
         superPredator1.update();
         animals.removeIf(Animal::isDead);
         animals.forEach(Animal::update);
+        System.out.println("first: " + superPredator1.getScore());
+        System.out.println("second:: " + superPredator2.getScore());
     }
 
 
@@ -268,11 +270,11 @@ public class WorldApp extends Application {
             } else if (e.getCode() == KeyCode.D) {
                 superPredator1.rotateRight();
             } else if (e.getCode() == KeyCode.SHIFT)
-                superPredator1.getView().setRotate(superPredator1.getRotate() + 10000);
+                superPredator1.update();
             if (e.getCode() == KeyCode.LEFT) superPredator2.rotateLeft();
             else if (e.getCode() == KeyCode.RIGHT) superPredator2.rotateRight();
         });
-      
+
         stage.show();
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(90), new EventHandler<ActionEvent>() {
@@ -303,7 +305,6 @@ public class WorldApp extends Application {
                     }
                 } else {
                     addPlants(new Plants(), Math.random() * root.getPrefHeight(), Math.random() * root.getPrefWidth());
-
                 }
                 for (Animal animal : animals) {
                     if (animal instanceof Predator && animal.isPregnant()) {
@@ -328,6 +329,7 @@ public class WorldApp extends Application {
 
                 }
             }
+
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
